@@ -6,6 +6,7 @@
 package Presentacion;
 
 
+import FCMaterialLookAndFeelTheme.MaterialLookAndFeel;
 import FCMaterialLookAndFeelTheme.MaterialTheme;
 import FiveCod.utils.FCMaterialColors;
 import FiveCod.utils.FCMaterialImageFactory;
@@ -17,7 +18,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import FiveCodLookAndFeelThemeV2.FiveCodMaterialLookAndFeel;
+//import FiveCodLookAndFeelThemeV2.FiveCodMaterialLookAndFeel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -262,9 +263,9 @@ DefaultTableModel modeloC=new DefaultTableModel();
                                     .addComponent(jLabel8))
                                 .addGap(7, 7, 7))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(spnfm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(spnfm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(spncm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,14 +334,14 @@ private void tablaC(int fil,int col){
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try{
-             /*JFrame.setDefaultLookAndFeelDecorated(true);
+             JFrame.setDefaultLookAndFeelDecorated(true);
   JDialog.setDefaultLookAndFeelDecorated(true);
            MaterialTheme materialTheme= new MaterialTheme.MaterialThemeBuilder().build();
            MaterialLookAndFeel andFeel= new MaterialLookAndFeel(materialTheme);
-           UIManager.setLookAndFeel(andFeel);*/
-             JFrame.setDefaultLookAndFeelDecorated(true);
-  JDialog.setDefaultLookAndFeelDecorated(true);
-             UIManager.setLookAndFeel(new FiveCodMaterialLookAndFeel());
+           UIManager.setLookAndFeel(andFeel);
+           //  JFrame.setDefaultLookAndFeelDecorated(true);
+ // JDialog.setDefaultLookAndFeelDecorated(true);
+          //   UIManager.setLookAndFeel(new FiveCodMaterialLookAndFeel());
         }catch(Exception e){
             e.printStackTrace();
         }
