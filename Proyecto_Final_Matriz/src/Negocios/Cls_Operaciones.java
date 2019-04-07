@@ -37,12 +37,14 @@ public class Cls_Operaciones {
             }
         }
     }
-     public void multiplicar(int Afila,int Bcol,int Acol,String A[][],String B[][],String C[][]){
-                C[0][0]="0";
+     public void multiplicar(int Afila,int Bcol,int Acol,String A[][],String B[][],String C[][]){                
                 for(int i = 0; i <  Bcol; i++){
                     for(int j = 0; j < Afila ; j++){
                         for(int k = 0; k < Acol ; k++){
-                            C[j][i] = String.valueOf(Double.parseDouble(C[j][i]) + (Double.parseDouble(A[j][k]) * Double.parseDouble(B[k][i]))); 
+                            if(C[j][i] == null){
+                                C[j][i]="0";
+                            }
+                             C[j][i] = String.valueOf(Double.parseDouble(C[j][i]) + (Double.parseDouble(A[j][k]) * Double.parseDouble(B[k][i]))); 
                         }
                     }
                 }

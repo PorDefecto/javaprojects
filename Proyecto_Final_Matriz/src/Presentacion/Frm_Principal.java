@@ -321,7 +321,7 @@ DefaultTableModel modeloC=new DefaultTableModel();
          op.datotabla(Afila, Acol,A,modeloA);
          op.datotabla(Afila, Acol,B,modeloB);
          op.multiplicar(Afila, Bcol,Acol, A, B, Resultado);
-        
+         
         String[] nombrecol = new String[Bcol];
         for (int i = 0; i < Bcol; i++) {
              nombrecol[i]="";
