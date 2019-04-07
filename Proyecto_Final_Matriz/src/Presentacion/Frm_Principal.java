@@ -38,7 +38,7 @@ DefaultTableModel modeloC=new DefaultTableModel();
     public Frm_Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        modeloA.setColumnCount(2);
+       /* modeloA.setColumnCount(2);
     modeloA.setRowCount(2);
     modeloB.setColumnCount(2);
     modeloB.setRowCount(2);
@@ -103,7 +103,6 @@ DefaultTableModel modeloC=new DefaultTableModel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -117,10 +116,7 @@ DefaultTableModel modeloC=new DefaultTableModel();
 
         jtblB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -130,10 +126,7 @@ DefaultTableModel modeloC=new DefaultTableModel();
 
         jtblA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -173,13 +166,6 @@ DefaultTableModel modeloC=new DefaultTableModel();
 
         jLabel9.setText("Columnas");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jTextField1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,33 +199,27 @@ DefaultTableModel modeloC=new DefaultTableModel();
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGap(12, 12, 12)
                                     .addComponent(spncm2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addComponent(btngenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(btngenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmboperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(133, 133, 133))))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmboperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(133, 133, 133))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(2, 2, 2)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cmboperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,7 +260,7 @@ DefaultTableModel modeloC=new DefaultTableModel();
                         .addComponent(btngenerar)
                         .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
         );
@@ -305,63 +285,50 @@ DefaultTableModel modeloC=new DefaultTableModel();
         }
     }//GEN-LAST:event_btngenerarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        int Afila=Integer.parseInt(spnfm1.getValue().toString());
-        int Acol=Integer.parseInt(spncm1.getValue().toString());
-        int Bfila=Integer.parseInt(spnfm2.getValue().toString());
-        int Bcol=Integer.parseInt(spncm2.getValue().toString());
-        String[][] A = new String[Afila][Acol];
-        for (int i = 0; i < Afila; i++) {
-            for (int j = 0; j < Acol; j++) {
-                A[i][j]=String.valueOf(modeloA.getValueAt(i,j));
-            }
-           
-          
-        }
-        String[] nombrecol = new String[Bcol];
-        for (int i = 0; i < Bcol; i++) {
-             nombrecol[i]="";
-        }
-        
-       jtblB.setModel(new DefaultTableModel(A,nombrecol));
-       
-        
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void cmboperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboperacionesActionPerformed
-        if (cmboperaciones.getSelectedItem()=="Suma") {
+        Cls_Operaciones op= new Cls_Operaciones();
             int Afila=Integer.parseInt(spnfm1.getValue().toString());
             int Acol=Integer.parseInt(spncm1.getValue().toString());
             int Bfila=Integer.parseInt(spnfm2.getValue().toString());
             int Bcol=Integer.parseInt(spncm2.getValue().toString());
-         String[][] A = new String[Afila][Acol];
-        for (int i = 0; i < Afila; i++) {
-            for (int j = 0; j < Acol; j++) {
-                A[i][j]=String.valueOf(modeloA.getValueAt(i,j));
-            }
-        }
-        String[][] B = new String[Bfila][Bcol];
-        for (int i = 0; i < Bfila; i++) {
-            for (int j = 0; j < Bcol; j++) {
-                B[i][j]=String.valueOf(modeloB.getValueAt(i,j));
-            }
-        }
-        String[][] suma = new String[Bfila][Bcol];
-        for (int i = 0; i < Bfila; i++) {
-            for (int j = 0; j < Acol; j++) {
-                suma[i][j]=String.valueOf(Integer.parseInt(A[i][j])+Integer.parseInt(B[i][j]));
-            }
-        }
+           String[][] A = new String[Afila][Acol];
+           String[][] B = new String[Bfila][Bcol];
+           String[][] Resultado = new String[Afila][Bcol];
+        if (cmboperaciones.getSelectedItem()=="Suma") {   
+       
+         op.datotabla(Afila, Acol,A,modeloA);
+         op.datotabla(Afila, Acol,B,modeloB);
+         op.sumar(Afila, Acol, A, B, Resultado);
         
         String[] nombrecol = new String[Bcol];
         for (int i = 0; i < Bcol; i++) {
              nombrecol[i]="";
         }
         
-       jtblC.setModel(new DefaultTableModel(suma,nombrecol));
+       jtblC.setModel(new DefaultTableModel(Resultado,nombrecol));
+        }else if(cmboperaciones.getSelectedItem()=="Resta"){
+               op.datotabla(Afila, Acol,A,modeloA);
+         op.datotabla(Afila, Acol,B,modeloB);
+         op.restar(Afila, Acol, A, B, Resultado);
+        
+        String[] nombrecol = new String[Bcol];
+        for (int i = 0; i < Bcol; i++) {
+             nombrecol[i]="";
         }
+        
+       jtblC.setModel(new DefaultTableModel(Resultado,nombrecol)); 
+         }else if(cmboperaciones.getSelectedItem()=="Multiplicación"){
+         op.datotabla(Afila, Acol,A,modeloA);
+         op.datotabla(Afila, Acol,B,modeloB);
+         op.multiplicar(Afila, Bcol,Acol, A, B, Resultado);
+        
+        String[] nombrecol = new String[Bcol];
+        for (int i = 0; i < Bcol; i++) {
+             nombrecol[i]="";
+        }
+        
+       jtblC.setModel(new DefaultTableModel(Resultado,nombrecol)); 
+         }
     }//GEN-LAST:event_cmboperacionesActionPerformed
     private void tablaA(int fil,int col){
     
@@ -414,7 +381,6 @@ private void tablaC(int fil,int col){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btngenerar;
     private javax.swing.JComboBox<String> cmboperaciones;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
