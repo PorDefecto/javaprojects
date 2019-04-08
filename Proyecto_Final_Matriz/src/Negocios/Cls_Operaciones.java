@@ -19,7 +19,7 @@ public class Cls_Operaciones {
             for (int j = 0; j < nc; j++) {
                 m[i][j]=String.valueOf(modelo.getValueAt(i,j));
             }
-        }
+        } 
     }
     public void sumar(int nf, int nc,String m[][],String mm[][],String suma[][] ){
        

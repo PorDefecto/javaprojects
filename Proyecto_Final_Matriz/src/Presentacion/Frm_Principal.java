@@ -21,6 +21,7 @@ import javax.swing.UIManager;
 //import FiveCodLookAndFeelThemeV2.FiveCodMaterialLookAndFeel;
 import javax.swing.table.DefaultTableModel;
 import Negocios.Cls_Operaciones;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -194,20 +195,17 @@ DefaultTableModel modeloC=new DefaultTableModel();
                                 .addComponent(jLabel7))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(spnfm2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGap(12, 12, 12)
-                                    .addComponent(spncm2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(spncm2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(spnfm2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(btngenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(btngenerar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmboperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,11 +241,14 @@ DefaultTableModel modeloC=new DefaultTableModel();
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(spnfm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jLabel7))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(spnfm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(spncm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9)))
@@ -286,11 +287,16 @@ DefaultTableModel modeloC=new DefaultTableModel();
     }//GEN-LAST:event_btngenerarActionPerformed
 
     private void cmboperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboperacionesActionPerformed
+        try{
         Cls_Operaciones op= new Cls_Operaciones();
-            int Afila=Integer.parseInt(spnfm1.getValue().toString());
+            /*int Afila=Integer.parseInt(spnfm1.getValue().toString());
             int Acol=Integer.parseInt(spncm1.getValue().toString());
             int Bfila=Integer.parseInt(spnfm2.getValue().toString());
-            int Bcol=Integer.parseInt(spncm2.getValue().toString());
+            int Bcol=Integer.parseInt(spncm2.getValue().toString());*/
+            int Afila=modeloA.getRowCount();
+            int Acol=modeloA.getColumnCount();
+            int Bfila=modeloB.getRowCount();
+            int Bcol=modeloB.getColumnCount();
            String[][] A = new String[Afila][Acol];
            String[][] B = new String[Bfila][Bcol];
            String[][] Resultado = new String[Afila][Bcol];
@@ -329,6 +335,10 @@ DefaultTableModel modeloC=new DefaultTableModel();
         
        jtblC.setModel(new DefaultTableModel(Resultado,nombrecol)); 
          }
+        }catch(NumberFormatException exp ){
+            JOptionPane.showMessageDialog(null, "Todos los campos tienen que ser numeros","WARNING_MESSAGE",JOptionPane.WARNING_MESSAGE);
+        }
+        
     }//GEN-LAST:event_cmboperacionesActionPerformed
     private void tablaA(int fil,int col){
     
