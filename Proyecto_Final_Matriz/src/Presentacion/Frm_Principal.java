@@ -22,7 +22,10 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import Negocios.Cls_Operaciones;
 import java.awt.event.KeyEvent;
-
+import Jama.LUDecomposition;
+import Jama.Matrix;
+import java.util.Arrays;
+import Entidad.Cls_EMatriz;
 /**
  *
  * @author pordefecto
@@ -68,6 +71,11 @@ DefaultTableModel modeloC=new DefaultTableModel();
         btngenerar.setForeground(Color.WHITE);
         btngenerar.addMouseListener(FCMaterialUIMovement.getMovement(btngenerar, FCMaterialColors.GREEN_900));
         btngenerar.setIcon(new ImageIcon(FCMaterialImageFactory.getIstance().getImage(FCMaterialImageFactory.CHECK_CIRCLE_BLACK)));
+        
+         btnescalar.setBackground(FCMaterialColors.AMBER_400);
+        btnescalar.setForeground(Color.WHITE);
+        btnescalar.addMouseListener(FCMaterialUIMovement.getMovement(btnescalar, FCMaterialColors.AMBER_900));
+        //btnescalar.setIcon(new ImageIcon(FCMaterialImageFactory.getIstance().getImage(FCMaterialImageFactory.REPORT_BLACK)));
 /*
         btnSalir.setBackground(FCMaterialColors.RED_200);
         btnSalir.setForeground(Color.WHITE);
@@ -104,7 +112,8 @@ DefaultTableModel modeloC=new DefaultTableModel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtescalar = new javax.swing.JTextField();
+        btnescalar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,7 +176,14 @@ DefaultTableModel modeloC=new DefaultTableModel();
 
         jLabel9.setText("Columnas");
 
-        jTextField1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
+        txtescalar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
+
+        btnescalar.setText("Escalar");
+        btnescalar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnescalarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,8 +227,10 @@ DefaultTableModel modeloC=new DefaultTableModel();
                     .addComponent(cmboperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133))))
+                        .addComponent(txtescalar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnescalar)
+                        .addGap(28, 28, 28))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,7 +280,9 @@ DefaultTableModel modeloC=new DefaultTableModel();
                         .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtescalar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnescalar))
                         .addGap(30, 30, 30))))
         );
 
@@ -284,6 +304,7 @@ DefaultTableModel modeloC=new DefaultTableModel();
             tablaB(Bfila,Bcol);
             tablaC(Afila,Bcol);
         }
+        
     }//GEN-LAST:event_btngenerarActionPerformed
 
     private void cmboperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboperacionesActionPerformed
@@ -299,10 +320,13 @@ DefaultTableModel modeloC=new DefaultTableModel();
             int Bcol=modeloB.getColumnCount();
            String[][] A = new String[Afila][Acol];
            String[][] B = new String[Bfila][Bcol];
+           double[][] AB = new double[Afila][Acol];
+           double[][] BA = new double[Bfila][Bcol];
            String[][] Resultado = new String[Afila][Bcol];
         if (cmboperaciones.getSelectedItem()=="Suma") {   
        
-         op.datotabla(Afila, Acol,A,modeloA);
+            if (modeloA.getRowCount()==modeloB.getRowCount() && modeloA.getColumnCount()==modeloB.getColumnCount()) {
+                op.datotabla(Afila, Acol,A,modeloA);
          op.datotabla(Afila, Acol,B,modeloB);
          op.sumar(Afila, Acol, A, B, Resultado);
         
@@ -312,7 +336,13 @@ DefaultTableModel modeloC=new DefaultTableModel();
         }
         
        jtblC.setModel(new DefaultTableModel(Resultado,nombrecol));
+            }
+            else{
+                 JOptionPane.showMessageDialog(null, "LAS MATRICES DEBEN SER IGUALES","WARNING_MESSAGE",JOptionPane.WARNING_MESSAGE);
+            }
+         
         }else if(cmboperaciones.getSelectedItem()=="Resta"){
+            if (modeloA.getRowCount()==modeloB.getRowCount() && modeloA.getColumnCount()==modeloB.getColumnCount()) {
                op.datotabla(Afila, Acol,A,modeloA);
          op.datotabla(Afila, Acol,B,modeloB);
          op.restar(Afila, Acol, A, B, Resultado);
@@ -323,10 +353,32 @@ DefaultTableModel modeloC=new DefaultTableModel();
         }
         
        jtblC.setModel(new DefaultTableModel(Resultado,nombrecol)); 
+            }
+             else{
+                 JOptionPane.showMessageDialog(null, "LAS MATRICES DEBEN SER IGUALES","WARNING_MESSAGE",JOptionPane.WARNING_MESSAGE);
+            }
          }else if(cmboperaciones.getSelectedItem()=="Multiplicación"){
          op.datotabla(Afila, Acol,A,modeloA);
-         op.datotabla(Afila, Acol,B,modeloB);
+         op.datotabla(Bfila, Bcol,B,modeloB);
          op.multiplicar(Afila, Bcol,Acol, A, B, Resultado);
+         
+        String[] nombrecol = new String[Bcol];
+        for (int i = 0; i < Bcol; i++) {
+             nombrecol[i]="";
+        }
+        
+       jtblC.setModel(new DefaultTableModel(Resultado,nombrecol)); 
+         }else if(cmboperaciones.getSelectedItem()=="División"){
+           
+         op.datotablados(Afila, Acol,AB,modeloA);
+         op.datotablados(Bfila, Bcol,BA,modeloB);
+         
+         Matrix inverse= new Matrix(AB);
+         Matrix inversa= inverse.inverse();
+          Matrix aTransposed = inversa.transpose();
+      double[][] valsTransposed = aTransposed.getArray();
+            op.inversa(Afila, Bcol, Acol, BA, valsTransposed, Resultado);
+        // Matrix c = A.Solve(inverse); 
          
         String[] nombrecol = new String[Bcol];
         for (int i = 0; i < Bcol; i++) {
@@ -337,9 +389,44 @@ DefaultTableModel modeloC=new DefaultTableModel();
          }
         }catch(NumberFormatException exp ){
             JOptionPane.showMessageDialog(null, "Todos los campos tienen que ser numeros","WARNING_MESSAGE",JOptionPane.WARNING_MESSAGE);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado","WARNING_MESSAGE",JOptionPane.WARNING_MESSAGE);
         }
         
     }//GEN-LAST:event_cmboperacionesActionPerformed
+
+    private void btnescalarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnescalarActionPerformed
+        try{
+             Cls_Operaciones op= new Cls_Operaciones();
+            /*int Afila=Integer.parseInt(spnfm1.getValue().toString());
+            int Acol=Integer.parseInt(spncm1.getValue().toString());
+            int Bfila=Integer.parseInt(spnfm2.getValue().toString());
+            int Bcol=Integer.parseInt(spncm2.getValue().toString());*/
+            int Afila=modeloA.getRowCount();
+            int Acol=modeloA.getColumnCount();
+            int Bfila=modeloB.getRowCount();
+            int Bcol=modeloB.getColumnCount();
+            double escalar=Double.parseDouble(txtescalar.getText());
+           String[][] AB = new String[Afila][Acol];
+          
+           String[][] Resultado = new String[Afila][Bcol];
+           
+           //////////////////////////////////
+        op.datotabla(Afila, Acol,AB,modeloA);
+        op.escalar(Afila, Acol, AB, modelo, escalar, Resultado);
+         
+        String[] nombrecol = new String[Acol];
+        for (int i = 0; i < Acol; i++) {
+             nombrecol[i]="";
+        }
+        
+       jtblC.setModel(new DefaultTableModel(Resultado,nombrecol)); 
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error inesperado","WARNING_MESSAGE",JOptionPane.WARNING_MESSAGE);
+        }
+       
+    }//GEN-LAST:event_btnescalarActionPerformed
     private void tablaA(int fil,int col){
     
     modeloA.setRowCount(fil);
@@ -389,6 +476,7 @@ private void tablaC(int fil,int col){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnescalar;
     private javax.swing.JButton btngenerar;
     private javax.swing.JComboBox<String> cmboperaciones;
     private javax.swing.JLabel jLabel4;
@@ -400,7 +488,6 @@ private void tablaC(int fil,int col){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jtblA;
     private javax.swing.JTable jtblB;
     private javax.swing.JTable jtblC;
@@ -408,5 +495,6 @@ private void tablaC(int fil,int col){
     private javax.swing.JSpinner spncm2;
     private javax.swing.JSpinner spnfm1;
     private javax.swing.JSpinner spnfm2;
+    private javax.swing.JTextField txtescalar;
     // End of variables declaration//GEN-END:variables
 }
